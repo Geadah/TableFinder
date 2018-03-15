@@ -1,0 +1,5 @@
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.DataAccess.dll
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.DataAccess.pdb
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.csprojResolveAssemblyReference.cache
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.dll
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.pdb

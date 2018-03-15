@@ -1,0 +1,5 @@
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Models\bin\Debug\TableFinder.Models.dll
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Models\bin\Debug\TableFinder.Models.pdb
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Models\obj\Debug\TableFinder.Models.csprojResolveAssemblyReference.cache
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Models\obj\Debug\TableFinder.Models.dll
+c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Models\obj\Debug\TableFinder.Models.pdb

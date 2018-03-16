@@ -3,3 +3,10 @@ c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Dat
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.csprojResolveAssemblyReference.cache
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.dll
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.pdb
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.DataAccess.dll
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.DataAccess.pdb
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.Models.dll
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\bin\Debug\TableFinder.Models.pdb
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.dll
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.DataAccess\obj\Debug\TableFinder.DataAccess.pdb

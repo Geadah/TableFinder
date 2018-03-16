@@ -51,3 +51,6 @@ c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.Web
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.csprojResolveAssemblyReference.cache
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.dll
 c:\users\aluno\documents\visual studio 2015\Projects\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.pdb
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.csprojResolveAssemblyReference.cache
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.dll
+C:\Users\Aluno\Documents\GitHub\TableFinder\TableFinder\TableFinder.WebUI\obj\Debug\TableFinder.WebUI.pdb

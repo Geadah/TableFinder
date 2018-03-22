@@ -20,7 +20,9 @@ namespace TableFinder.WebUI.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return RedirectToAction("Index", "Navegacao");
+            return RedirectToAction("Index", "Home");
         }
+
+
     }
 }

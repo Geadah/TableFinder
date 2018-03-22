@@ -13,12 +13,13 @@
                 <div class="col-md-12">
                     @Html.LabelFor(m => m.Login, "Login:", new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+               
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     @Html.LabelFor(m => m.Senha, "Senha:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
+                    @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">

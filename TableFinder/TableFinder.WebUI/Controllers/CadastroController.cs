@@ -5,12 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TableFinder.Models;
 
 namespace TableFinders.Controllers
 {
     public class CadastroController : Controller
     {
-        // GET: Usuario
         public ActionResult Index()
         {
             return View();
@@ -29,16 +29,18 @@ namespace TableFinders.Controllers
                         Integrated Security=SSPI;"))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO cadastro (nome_usuario, senha, nome_completo, cpf, email) VALUES (@nome_usuario, @senha, @nome_completo,@cpf,@email)";
+                string strSQL = @"INSERT INTO cadastro (nome_usuario, senha, nome_completo, cpf, email) VALUES (@nome_usuario, @senha, @nome_completo, @cpf, @email)";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
                     cmd.Connection = conn;
                     //Preenchendo os parâmetros da instrução sql
-                    cmd.Parameters.Add("@nome", SqlDbType.VarChar).Value = obj.Nome;
-                    cmd.Parameters.Add("@endereco", SqlDbType.VarChar).Value = obj.Endereco;
-                    cmd.Parameters.Add("@telefone", SqlDbType.VarChar).Value = obj.Telefone;
+                    cmd.Parameters.Add("@nome_usuario", SqlDbType.VarChar).Value = obj.Nome;
+                    cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = obj.Senha;
+                    cmd.Parameters.Add("@nome_completo", SqlDbType.VarChar).Value = obj.NomeCompleto;
+                    cmd.Parameters.Add("@cpf", SqlDbType.VarChar).Value = obj.CPF;
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.Email;
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();
@@ -49,7 +51,7 @@ namespace TableFinders.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Usuario");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

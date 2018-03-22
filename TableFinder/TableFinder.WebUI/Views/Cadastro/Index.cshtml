@@ -5,14 +5,8 @@
         <form action="@Url.Action("Salvar", "Cadastro")" class="form-horizontal">
             <div class="form-group">
                 <div class="col-md-12 text-center">
-                     <h3>Cadastro de Usuário</h3>
+                    <h3>Cadastro de Usuário</h3>
                     <hr />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.LabelFor(m => m.Nome, "Nome de Usuario:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
@@ -23,18 +17,22 @@
             </div>
             <div class="form-group">
                 <div class="col-md-6">
+                    @Html.LabelFor(m => m.Login, "Login:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
                     @Html.LabelFor(m => m.Senha, "Senha:", new { @class = "control-label" })
                     @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
                 </div>
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.CPF, "CPF:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.CPF, new { @class = "form-control" })
-                </div>
             </div>
             <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     @Html.LabelFor(m => m.Email, "Email:", new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.CPF, "CPF:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.CPF, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">

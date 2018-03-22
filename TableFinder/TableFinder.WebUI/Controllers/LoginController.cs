@@ -11,7 +11,7 @@ namespace TableFinder.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Logar(Cadastro obj)
+        public ActionResult Entrar(Cadastro obj)
         {
             var cadastro = new CadastroDAO().Logar(obj);
 

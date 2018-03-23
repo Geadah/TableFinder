@@ -20,7 +20,7 @@ namespace TableFinders.Controllers
         {
             new CadastroDAO().Inserir(obj);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

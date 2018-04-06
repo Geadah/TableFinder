@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TableFinder.DataAccess;
 
 namespace TableFinder.WebUI.Controllers
 {
     public class NavegacaoController : Controller
     {
-        // GET: Navegacao
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var obj = new EstabelecimentoDAO().BuscarPorId(id);
+            return View(obj);
         }
     }
 }

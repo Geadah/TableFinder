@@ -1,170 +1,26 @@
-﻿<div class="row">
-    @*PRIMEIRA COLUNA*@
-    <div class="col-md-4 text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
+﻿@using TableFinder.Models
+@model List<Estabelecimento>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <img class="img-responsive" src="~/Images/hamburguer.jpg" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Index", "Navegacao", new { @id = item.Id })">
+                        <h3>@item.Nome</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @(item.Descricao.Length > 100 ? item.Descricao.Substring(0, 100) + "..." : item.Descricao)
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-    </div>
-    @*SEGUNDA COLUNA*@
-    <div class="col-md-4 text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-    </div>
-    @*TERCEIRA COLUNA*@
-    <div class="col-md-4 text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="~/Images/hamburguer.jpg" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <h3>Hamburgão Do Gilberto</h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
-            </div>
-        </div>
-    </div>
+    }
 </div>

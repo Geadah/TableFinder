@@ -1,0 +1,87 @@
+﻿@using TableFinder.Models
+@model Estabelecimento
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="@Url.Action("Salvar", "CadEstab")" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12 text-center">
+                    <h3>Cadastro de Estabelecimento</h3>
+                    <hr />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(m => m.Nome, "Nome Estabelecimento:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.Localizacao, "Localização:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Localizacao, new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.Imagem, "Imagem:", new { @id = "lblImagem", @class = "control-label" })
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Imagem, new { @id = "txtImagem", @class = "form-control", @maxlength = 1000, @readonly = true })
+                        <span class="input-group-btn">
+                            <span class="btn btn-default fileinput-button">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                <input id="fupArquivo" type="file" name="files[]" multiple="multiple" data-url="@Url.Action("Upload", "CadEstab")" />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(m => m.CNPJ, "CNPJ:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.CNPJ, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(m => m.Descricao, "Descrição:", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $('#fupArquivo').change(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var data = new FormData();
+            var files = $(this).get(0).files;
+
+            if (files.length > 0) {
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+            }
+
+            $.ajax({
+                url: $("#fupArquivo").data("url"),
+                data: data,
+                method: "POST",
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    $("#txtImagem").val(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+        });
+    </script>
+}

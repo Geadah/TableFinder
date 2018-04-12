@@ -35,7 +35,9 @@ values
 hsajdhashdljsahdlkhsalkdhsalkdhsalkhdlksakhdsalkdhsalkhdksahdlksahdksa
 sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe'
 )
+
 select * from estabelecimento
+
 drop table estabelecimento
 
 create table cardapio
@@ -48,3 +50,6 @@ imagem varchar(1000),
 )
 select * from cardapio
 drop table cardapio
+
+
+update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 1;

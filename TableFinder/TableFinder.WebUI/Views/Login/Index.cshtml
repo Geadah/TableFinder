@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class= "col-md-12">
-                    
+                <div class="col-md-12">
+
                     @Html.LabelFor(m => m.Login, "Login:", new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
-               
+
                 </div>
             </div>
             <div class="form-group">
@@ -23,6 +23,24 @@
                     @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
                 </div>
             </div>
+            <div class="form-group">
+
+
+                <div class="col-md-12 text-right">
+                    <a href="http://localhost:49478/Cadastro/Index">
+                        <h5>Crie sua conta</h5>
+                    </a>
+                </div>
+                
+                <div class="col-md-12 text-right">
+                    <a href="#">
+                        <h5>Esqueci minha senha</h5>
+                    </a>
+                </div>
+                <hr />
+            </div>
+
+
             <div class="form-group">
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary btn-block">Entrar</button>

@@ -13,7 +13,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, cnpj, localizacao) VALUES (@nome, @descricao, @cnpj, @localizacao);";
+                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -22,7 +22,7 @@ namespace TableFinder.DataAccess
                     //Preenchendo os parâmetros da instrução sql
                     cmd.Parameters.Add("@nome", SqlDbType.VarChar).Value = obj.Nome;
                     cmd.Parameters.Add("@descricao", SqlDbType.VarChar).Value = obj.Descricao;
-                    //cmd.Parameters.Add("@imagem", SqlDbType.VarChar).Value = obj.Imagem;
+                    cmd.Parameters.Add("@imagem", SqlDbType.VarChar).Value = obj.Imagem;
                     cmd.Parameters.Add("@cnpj", SqlDbType.VarChar).Value = obj.CNPJ;
                     cmd.Parameters.Add("@localizacao", SqlDbType.VarChar).Value = obj.Localizacao;
 
@@ -40,10 +40,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<Estabelecimento>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn =
-                      new SqlConnection(@"Initial Catalog=TableFinder;
-                                        Data Source=localhost;
-                                        Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM estabelecimento;";
@@ -69,8 +66,10 @@ namespace TableFinder.DataAccess
                         {
                             Id = Convert.ToInt32(row["id_estabelecimento"]),
                             Nome = row["nome"].ToString(),
+                            Descricao = row["descricao"].ToString(),
+                            Imagem = row["imagem"].ToString(),
                             CNPJ = row["cnpj"].ToString(),
-                            Descricao = row["descricao"].ToString()
+                            Localizacao = row["localizacao"].ToString()
                         };
 
                         lst.Add(estabelecimento);
@@ -84,10 +83,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<Estabelecimento>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn =
-                      new SqlConnection(@"Initial Catalog=TableFinder;
-                                        Data Source=localhost;
-                                        Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM estabelecimento where id_estabelecimento = @id_estabelecimento;";
@@ -116,8 +112,10 @@ namespace TableFinder.DataAccess
                     {
                         Id = Convert.ToInt32(row["id_estabelecimento"]),
                         Nome = row["nome"].ToString(),
+                        Descricao = row["descricao"].ToString(),
+                        Imagem = row["imagem"].ToString(),
                         CNPJ = row["cnpj"].ToString(),
-                        Descricao = row["descricao"].ToString()
+                        Localizacao = row["localizacao"].ToString()
                     };
 
                     return estabelecimento;

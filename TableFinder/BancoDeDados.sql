@@ -31,9 +31,11 @@ localizacao varchar(100),
 insert into estabelecimento
 values
 (
-''
+'Hamburgão do Gilberto','dsadjsadjsajdhsadhsadjsahdljsahdhsalkdjksahdlksahsahd
+hsajdhashdljsahdlkhsalkdhsalkdhsalkhdlksakhdsalkdhsalkhdksahdlksahdksa
+sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe'
 )
-
+select * from estabelecimento
 drop table estabelecimento
 
 create table cardapio

@@ -44,10 +44,18 @@ create table cardapio
 (
 id_estabelecimento integer identity primary key references estabelecimento (id_estabelecimento),
 produto varchar(50),
+tipo varchar(50),
 descricao text,
 preco varchar(50),
 imagem varchar(1000),
 )
+
+
+
+insert into cardapio
+values
+('Carne de Cavalo','Carne do Cavalo do seu pai','R$200,00')
+
 select * from cardapio
 drop table cardapio
 

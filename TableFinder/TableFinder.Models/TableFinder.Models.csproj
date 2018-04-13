@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cadastro.cs" />
+    <Compile Include="Cardapio.cs" />
     <Compile Include="Estabelecimento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

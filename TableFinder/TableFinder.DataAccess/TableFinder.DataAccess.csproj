@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CadastroDAO.cs" />
+    <Compile Include="CardapioDAO.cs" />
     <Compile Include="EstabelecimentoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

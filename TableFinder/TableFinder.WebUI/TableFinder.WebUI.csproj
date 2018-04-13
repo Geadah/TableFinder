@@ -169,6 +169,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\hamburguer.jpg" />
+    <Content Include="Images\Nature-Vintage-City-Wallpaper.jpg" />
     <Content Include="Images\pizza-wallpaper-11.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

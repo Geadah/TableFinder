@@ -42,7 +42,8 @@ drop table estabelecimento
 
 create table cardapio
 (
-id_estabelecimento integer identity primary key references estabelecimento (id_estabelecimento),
+id_cardapio integer identity primary key,
+id_estabelecimento integer references estabelecimento (id_estabelecimento),
 produto varchar(50),
 tipo varchar(50),
 descricao text,
@@ -54,7 +55,7 @@ imagem varchar(1000),
 
 insert into cardapio
 values
-('Carne de Cavalo','Carne do Cavalo do seu pai','R$200,00')
+('1','Carne de Cavalo','Carne','Carne do Cavalo do seu pai','R$200,00','dsadd')
 
 select * from cardapio
 drop table cardapio

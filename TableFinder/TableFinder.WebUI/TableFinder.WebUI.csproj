@@ -207,6 +207,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\CadEstab\Index.cshtml" />
     <Content Include="Views\Cardapio.cshtml" />
+    <Content Include="Views\Cardapio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

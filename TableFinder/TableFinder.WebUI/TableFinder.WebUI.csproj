@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CadastroController.cs" />
     <Compile Include="Controllers\CadEstabController.cs" />
+    <Compile Include="Controllers\CardapioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NavegacaoController.cs" />
@@ -168,9 +169,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\aviao.jpg" />
+    <Content Include="Images\clickdisk_4471420150417.jpg" />
     <Content Include="Images\hamburguer.jpg" />
+    <Content Include="Images\logo fiep - laboratórios.JPG" />
+    <Content Include="Images\loja-3.jpg" />
     <Content Include="Images\Nature-Vintage-City-Wallpaper.jpg" />
-    <Content Include="Images\pizza-wallpaper-11.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -206,7 +210,6 @@
     <Content Include="Views\Navegacao\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\CadEstab\Index.cshtml" />
-    <Content Include="Views\Cardapio.cshtml" />
     <Content Include="Views\Cardapio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />

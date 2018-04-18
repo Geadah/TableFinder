@@ -1,7 +1,26 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@using TableFinder.Models
+@model List<Cardapio>
 
-<h2>Index</h2>
-
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome do item</th>
+                    <th>Tipo</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Produto</td>
+                        <td>@item.Tipo</td>
+                        <td>@item.Preco</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

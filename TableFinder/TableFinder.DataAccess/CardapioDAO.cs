@@ -73,7 +73,53 @@ namespace TableFinder.DataAccess
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),
                             Imagem = row["imagem"].ToString(),
-                         
+                            Tipo = row["tipo"].ToString()
+
+                        };
+
+                        lst.Add(cardapio);
+                    }
+                }
+            }
+            return lst;
+        }
+
+        public List<Cardapio> BuscarPorEstab(int estabelecimento)
+        {
+            var lst = new List<Cardapio>();
+            //Criando uma conexão com o banco de dados
+            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            {
+                //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
+                string strSQL = @"SELECT * FROM cardapio where id_estabelecimento = @id_estabelecimento;";
+
+                //Criando um comando SQL para ser executado na base de dados
+                using (SqlCommand cmd = new SqlCommand(strSQL))
+                {
+                    //Abrindo conexão com o banco de dados
+                    conn.Open();
+                    cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = estabelecimento;
+                    cmd.Connection = conn;
+                    cmd.CommandText = strSQL;
+                    //Executando instrução SQL
+                    var dataReader = cmd.ExecuteReader();
+                    var dt = new DataTable();
+                    dt.Load(dataReader);
+                    //Fechando conexão com o banco de dados
+                    conn.Close();
+
+                    //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var cardapio = new Cardapio()
+                        {
+                            Id = Convert.ToInt32(row["id_estabelecimento"]),
+                            Idc = Convert.ToInt32(row["id_cardapio"]),
+                            Produto = row["produto"].ToString(),
+                            Descricao = row["descricao"].ToString(),
+                            Preco = row["preco"].ToString(),
+                            Imagem = row["imagem"].ToString(),
+                            Tipo = row["tipo"].ToString()
                         };
 
                         lst.Add(cardapio);

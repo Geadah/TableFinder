@@ -56,9 +56,20 @@ imagem varchar(1000),
 insert into cardapio
 values
 ('1','Carne de Cavalo','Carne','Carne do Cavalo do seu pai','R$200,00','dsadd')
+insert into cardapio
+values
+('2','Carne de Elefante','Carne','Carne da elefanta da sua tia aquela gorda','R$2548,00','dsaddsa')
 
 select * from cardapio
 drop table cardapio
 
 
 update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 1;
+
+create table feedback
+(
+id_usuario int foreign key references cadastro (id_usuario),
+id_voto integer identity primary key not null,
+opiniao text,
+nota varchar(50) null
+)

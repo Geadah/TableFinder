@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Principal
+@using TableFinder.Models
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -7,21 +9,16 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/jquery.fileupload.css" rel="stylesheet" />
-   <style>
-       body {
-           background-image: url('../../Images/Nature-Vintage-City-Wallpaper.jpg');
-       }
-   </style>
+    <style>
+        body {
+            background-image: url('../../Images/Nature-Vintage-City-Wallpaper.jpg');
+        }
+    </style>
 </head>
 <body>
-   
     <div class="navbar navbar-inverse navbar-fixed-top">
-      
-      
         <div class="container">
             <div class="navbar-header">
-     
-                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -32,10 +29,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Cadastro", "Index", "Cadastro")</li>
-                    <li>@Html.ActionLink("Cadastre seu Estabelecimento", "Index", "CadEstab")</li>
-                    
-               
+                    @if (User.GetType() == typeof(GenericPrincipal) || HttpContext.Current.User == null)
+                    {
+                        <li>@Html.ActionLink("Cadastro", "Index", "Cadastro")</li>
+                        <li>@Html.ActionLink("Cadastre seu Estabelecimento", "Index", "CadEstab")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.GetType() == typeof(GenericPrincipal) || HttpContext.Current.User == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    }
+                    @if (User.GetType() != typeof(GenericPrincipal) && ((Cadastro)HttpContext.Current.User) != null)
+                    {
+                        <li>@Html.ActionLink("Sair", "LogOff", "Login")</li>
+                    }
                 </ul>
             </div>
         </div>

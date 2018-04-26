@@ -9,6 +9,7 @@ using TableFinder.Models;
 
 namespace TableFinder.WebUI.Controllers
 {
+    [Authorize]
     public class CadEstabController : Controller
     {
         // GET: CadEstab

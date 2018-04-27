@@ -14,5 +14,6 @@ namespace TableFinder.Models
         public string Imagem { get; set; }
         public string CNPJ { get; set; }
         public string Localizacao { get; set; }
+        public List<Opiniao> Opinioes { get; set; }
     }
 }

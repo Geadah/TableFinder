@@ -1,5 +1,6 @@
 ﻿@using TableFinder.Models
 @model List<Estabelecimento>
+@model List<Opiniao>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -23,4 +24,70 @@
             </div>
         </div>
     }
+
+    <div class="row">
+        <div class="col-md-12">
+            <form action="@Url.Action("Enviar", "Home")" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="control-label">Envie um comentário:</label>
+                        <textarea name="Mensagem" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Enviar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        var rowIndex = 0;
+        var lastUser = 0;
+        foreach (var post in Model)
+        {
+            if (lastUser > 0 && lastUser != post.Usuario.Id)
+            {
+                rowIndex++;
+            }
+            if (rowIndex % 2 == 0)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-2 text-center-lg">
+                        <img class="img-circle" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                    </div>
+                    <div class="col-md-10">
+                        <h4 style="font-weight: bold;">@post.Usuario.Nome</h4>
+                        <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", post.DataHora)</h6>
+                        <p>
+                            @post.Mensagem
+                        </p>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-2 col-md-push-10 text-center-lg text-right-not-lg">
+                        <img class="img-circle direita" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                    </div>
+                    <div class="col-md-10 col-md-pull-2 text-right">
+                        <h4 style="font-weight: bold;">@post.Usuario.Nome</h4>
+                        <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", post.DataHora)</h6>
+                        <p>
+                            @post.Mensagem
+                        </p>
+                    </div>
+                </div>
+            }
+            lastUser = post.Usuario.Id;
+        }
+    }
+
+
+
 </div>

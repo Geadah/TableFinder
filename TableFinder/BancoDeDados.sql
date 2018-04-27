@@ -70,6 +70,16 @@ create table feedback
 (
 id_usuario int foreign key references cadastro (id_usuario),
 id_voto integer identity primary key not null,
+data_hora datetime not null default getdate(),
 opiniao text,
-nota varchar(50) null
+nota int null
 )
+
+drop table feedback
+
+
+SELECT 
+                                    p.*, 
+                                    u.nome_completo as usuario 
+                                FROM feedback p 
+                                INNER JOIN cadastro u ON (u.id_usuario = p.id_usuario);

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace TableFinder.Models
 {
-    public class Opiniao
+    public class Feedback
     {
-        public int Id_Usuario { get; set; }
-        public int Id_post { get; set; }
+       
+        public int IdFeedback { get; set; }
+        public Estabelecimento Estabelecimento { get; set; }
         public Cadastro Usuario { get; set; }
         public DateTime Data_Hora { get; set; }
-        public string Post { get; set; }
+        public string Opiniao { get; set; }
         public int Nota { get; set; }
         
     }

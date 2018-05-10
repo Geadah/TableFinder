@@ -13,8 +13,8 @@
                 <!-- Button trigger modal -->
                 <br />
                 @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Ver Cardápio
-                </button>*@
+                        Ver Cardápio
+                    </button>*@
                 <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Cardapio", new { @estabelecimento = Model.Id })">Ver Cardápio</a>
             </div>
         </div>
@@ -36,6 +36,72 @@
         </div>
     </div>
 </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="@Url.Action("EnviarMsg", "Navegacao")" class="form-horizontal">
+            <input name="Estabelecimento.Id" type="hidden" value="@Model.Id" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">Envie um comentário:</label>
+                    <textarea name="Opiniao" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary" value="Enviar" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model != null && Model.Opinioes.Count > 0)
+{
+    var rowIndex = 0;
+    var lastUser = 0;
+    foreach (var opiniao in Model.Opinioes)
+    {
+        if (lastUser > 0 && lastUser != opiniao.Usuario.Id)
+        {
+            rowIndex++;
+        }
+        if (rowIndex % 2 == 0)
+        {
+            <hr />
+            <div class="row" style="background-color: white !important;">
+                <div class="col-md-2 text-center-lg">
+                    <img class="img-circle" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                </div>
+                <div class="col-md-10">
+                    <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
+                    <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
+                    <p>
+                        @opiniao.Opiniao
+                    </p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <hr />
+            <div class="row" style="background-color: white !important;">
+                <div class="col-md-2 col-md-push-10 text-center-lg text-right-not-lg">
+                    <img class="img-circle direita" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                </div>
+                <div class="col-md-10 col-md-pull-2 text-right">
+                    <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
+                    <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
+                    <p>
+                        @opiniao.Opiniao
+                    </p>
+                </div>
+            </div>
+        }
+        lastUser = opiniao.Usuario.Id;
+    }
+}
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

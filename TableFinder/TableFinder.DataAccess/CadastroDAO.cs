@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using TableFinder.Models;
 
@@ -61,6 +62,7 @@ namespace TableFinder.DataAccess
                     var row = dt.Rows[0];
                     var usuario = new Cadastro()
                     {
+                        Id = Convert.ToInt32(row["id_usuario"]),
                         NomeCompleto = row["nome_completo"].ToString(),
                         Email = row["email"].ToString(),
                         CPF = row["cpf"].ToString(),

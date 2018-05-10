@@ -17,6 +17,7 @@ create table cadastro
 select * from cadastro
 
 
+
 create table estabelecimento
 (
 id_estabelecimento integer identity primary key,
@@ -68,8 +69,9 @@ update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 
 
 create table feedback
 (
+id_feedback integer identity primary key not null,
 id_usuario int foreign key references cadastro (id_usuario),
-id_voto integer identity primary key not null,
+id_estabelecimento int foreign key references estabelecimento (id_estabelecimento),
 data_hora datetime not null default getdate(),
 opiniao text,
 nota int null
@@ -83,3 +85,6 @@ SELECT
                                     u.nome_completo as usuario 
                                 FROM feedback p 
                                 INNER JOIN cadastro u ON (u.id_usuario = p.id_usuario);
+
+
+								select * from feedback;

@@ -43,7 +43,7 @@
     <Compile Include="CadastroDAO.cs" />
     <Compile Include="CardapioDAO.cs" />
     <Compile Include="EstabelecimentoDAO.cs" />
-    <Compile Include="PostDAO.cs" />
+    <Compile Include="FeedbackDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

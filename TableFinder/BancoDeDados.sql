@@ -101,3 +101,21 @@ SELECT
 
 
 								select * from feedback;
+
+
+create table tipo_comida
+(
+tipoId int identity primary key,
+tipoNome varchar(20),
+
+)	
+select * from tipo_comida
+
+insert into tipo_comida
+values
+('Pizza'),
+('Carne'),
+('Massa'),
+('Oriental'),
+('Vegetariano'),
+('Vegano')								

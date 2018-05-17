@@ -177,6 +177,7 @@
     <Content Include="Images\logo fiep - laboratórios.JPG" />
     <Content Include="Images\loja-3.jpg" />
     <Content Include="Images\Nature-Vintage-City-Wallpaper.jpg" />
+    <Content Include="Images\smalahove_just_eaten.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -192,6 +193,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\meiomask.js" />
+    <Content Include="Scripts\meiomask.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

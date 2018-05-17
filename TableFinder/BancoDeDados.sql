@@ -37,6 +37,15 @@ hsajdhashdljsahdlkhsalkdhsalkdhsalkhdlksakhdsalkdhsalkhdksahdlksahdksa
 sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe'
 )
 
+insert into estabelecimento
+values
+(
+'Iguarias do Edemar','Só carninha da boa e feita na hora
+tudo feito fresquinho e bem saboroso pelo grandioso e renomado
+chefe, o Edemar Raimundo Eliziano da Silva, o melhor chefe de
+cozinha do nordeste','sadsda','564564564564','Rua Chinelo Rasgado'
+)
+
 select * from estabelecimento
 
 drop table estabelecimento
@@ -66,6 +75,10 @@ drop table cardapio
 
 
 update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 1;
+
+update estabelecimento set imagem = 'smalahove_just_eaten.jpg' where id_estabelecimento = 2;
+
+
 
 create table feedback
 (

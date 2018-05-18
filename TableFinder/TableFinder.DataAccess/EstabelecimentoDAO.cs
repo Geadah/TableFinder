@@ -13,7 +13,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao);";
+                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao,aprovado) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -25,6 +25,7 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@imagem", SqlDbType.VarChar).Value = obj.Imagem;
                     cmd.Parameters.Add("@cnpj", SqlDbType.VarChar).Value = obj.CNPJ;
                     cmd.Parameters.Add("@localizacao", SqlDbType.VarChar).Value = obj.Localizacao;
+                    cmd.Parameters.Add("@Aprovado", SqlDbType.VarChar).Value = obj.Aprovado;
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();
@@ -69,7 +70,8 @@ namespace TableFinder.DataAccess
                             Descricao = row["descricao"].ToString(),
                             Imagem = row["imagem"].ToString(),
                             CNPJ = row["cnpj"].ToString(),
-                            Localizacao = row["localizacao"].ToString()
+                            Localizacao = row["localizacao"].ToString(),
+                            Aprovado = Convert.ToInt32(row["Aprovado"])
                         };
 
                         lst.Add(estabelecimento);
@@ -115,7 +117,8 @@ namespace TableFinder.DataAccess
                         Descricao = row["descricao"].ToString(),
                         Imagem = row["imagem"].ToString(),
                         CNPJ = row["cnpj"].ToString(),
-                        Localizacao = row["localizacao"].ToString()
+                        Localizacao = row["localizacao"].ToString(),
+                        Aprovado = Convert.ToInt32(row["Aprovado"])
                     };
 
                     return estabelecimento;

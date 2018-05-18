@@ -10,6 +10,7 @@ namespace TableFinder.Models
     {
         public int Id { get; set; }
         public int Idc { get; set; }
+        public int IdTC { get; set; }
         public string Produto { get; set; }
         public string Tipo { get; set; }
         public string Descricao { get; set;}

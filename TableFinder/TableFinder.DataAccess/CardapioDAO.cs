@@ -69,6 +69,7 @@ namespace TableFinder.DataAccess
                         {
                             Id = Convert.ToInt32(row["id_estabelecimento"]),
                             Idc = Convert.ToInt32(row["id_cardapio"]),
+                            IdTC = Convert.ToInt32(row["id_tipo"]),
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),
@@ -115,6 +116,7 @@ namespace TableFinder.DataAccess
                         {
                             Id = Convert.ToInt32(row["id_estabelecimento"]),
                             Idc = Convert.ToInt32(row["id_cardapio"]),
+                            IdTC = Convert.ToInt32(row["id_tipo"]),
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),

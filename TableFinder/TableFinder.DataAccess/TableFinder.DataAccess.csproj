@@ -45,6 +45,7 @@
     <Compile Include="EstabelecimentoDAO.cs" />
     <Compile Include="FeedbackDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TComidaDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TableFinder.Models\TableFinder.Models.csproj">

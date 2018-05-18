@@ -26,6 +26,7 @@ descricao text,
 imagem varchar(1000),
 cnpj varchar(50),
 localizacao varchar(100),
+Aprovado int
 
 )
 
@@ -34,7 +35,7 @@ values
 (
 'Hamburgão do Gilberto','dsadjsadjsajdhsadhsadjsahdljsahdhsalkdjksahdlksahsahd
 hsajdhashdljsahdlkhsalkdhsalkdhsalkhdlksakhdsalkdhsalkhdksahdlksahdksa
-sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe'
+sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe','1'
 )
 
 insert into estabelecimento
@@ -43,7 +44,7 @@ values
 'Iguarias do Edemar','Só carninha da boa e feita na hora
 tudo feito fresquinho e bem saboroso pelo grandioso e renomado
 chefe, o Edemar Raimundo Eliziano da Silva, o melhor chefe de
-cozinha do nordeste','sadsda','564564564564','Rua Chinelo Rasgado'
+cozinha do nordeste','sadsda','564564564564','Rua Chinelo Rasgado','1'
 )
 
 select * from estabelecimento
@@ -54,21 +55,22 @@ create table cardapio
 (
 id_cardapio integer identity primary key,
 id_estabelecimento integer references estabelecimento (id_estabelecimento),
+id_tipo integer references tipo_comida (tipoId),
 produto varchar(50),
-tipo varchar(50),
 descricao text,
 preco varchar(50),
 imagem varchar(1000),
 )
+drop table cardapio
 
 
 
 insert into cardapio
 values
-('1','Carne de Cavalo','Carne','Carne do Cavalo do seu pai','R$200,00','dsadd')
+('1','2','Carne de Cavalo','Carne do cavalo do seu pai','R$200,00','dsadd')
 insert into cardapio
 values
-('2','Carne de Elefante','Carne','Carne da elefanta da sua tia aquela gorda','R$2548,00','dsaddsa')
+('2','2','Carne de Elefante','Carne da elefanta gorda, aquela sua tia','R$2548,00','dsaddsa')
 
 select * from cardapio
 drop table cardapio

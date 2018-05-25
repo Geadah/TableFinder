@@ -13,7 +13,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao,aprovado) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao);";
+                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao,aprovado) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao, @aprovado);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -124,6 +124,50 @@ namespace TableFinder.DataAccess
                     return estabelecimento;
                 }
             }
+        }
+
+        public List<Estabelecimento> BuscarNaoAprovados()
+        {
+            var lst = new List<Estabelecimento>();
+            //Criando uma conexão com o banco de dados
+            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            {
+                //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
+                string strSQL = @"SELECT * FROM estabelecimento where aprovado = 0;";
+
+                //Criando um comando SQL para ser executado na base de dados
+                using (SqlCommand cmd = new SqlCommand(strSQL))
+                {
+                    //Abrindo conexão com o banco de dados
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = strSQL;
+                    //Executando instrução SQL
+                    var dataReader = cmd.ExecuteReader();
+                    var dt = new DataTable();
+                    dt.Load(dataReader);
+                    //Fechando conexão com o banco de dados
+                    conn.Close();
+
+                    //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var estabelecimento = new Estabelecimento()
+                        {
+                            Id = Convert.ToInt32(row["id_estabelecimento"]),
+                            Nome = row["nome"].ToString(),
+                            Descricao = row["descricao"].ToString(),
+                            Imagem = row["imagem"].ToString(),
+                            CNPJ = row["cnpj"].ToString(),
+                            Localizacao = row["localizacao"].ToString(),
+                            Aprovado = Convert.ToInt32(row["Aprovado"])
+                        };
+
+                        lst.Add(estabelecimento);
+                    }
+                }
+            }
+            return lst;
         }
     }
 }

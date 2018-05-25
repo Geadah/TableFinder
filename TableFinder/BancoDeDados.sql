@@ -1,3 +1,4 @@
+drop database TableFinder
 create database TableFinder
 go
 
@@ -26,10 +27,9 @@ descricao text,
 imagem varchar(1000),
 cnpj varchar(50),
 localizacao varchar(100),
-Aprovado int
-
+Aprovado int default 0
 )
-
+drop table estabelecimento
 insert into estabelecimento
 values
 (

@@ -1,0 +1,24 @@
+﻿@using TableFinder.Models
+@model List<Estabelecimento>
+<div class="row">
+    <div class="col-md-12">
+    <div class="table-responsive">
+        <table class="table-hover">
+            <thead>
+            <tr>
+                <th></th>      
+                <th></th> 
+                <th></th>           
+            </tr>
+                </thead>
+            <tbody>
+                @foreach (Estabelecimento item in Model)
+                {
+                    <td>@item.Nome</td>
+                    <td>@item.Descricao</td>
+                }
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>

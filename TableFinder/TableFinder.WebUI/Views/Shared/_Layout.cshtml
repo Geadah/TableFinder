@@ -41,6 +41,10 @@
                     }
                     @if (User.GetType() != typeof(GenericPrincipal) && ((Cadastro)HttpContext.Current.User) != null)
                     {
+                        if (((Cadastro)HttpContext.Current.User).Administrador)
+                        {
+                            <li>@Html.ActionLink("Aprovações", "Index", "Aprovacao")</li>
+                        }
                         <li>@Html.ActionLink("Cadastre seu Estabelecimento", "Index", "CadEstab")</li>
                         <li>@Html.ActionLink("Sair", "LogOff", "Login")</li>
                     }

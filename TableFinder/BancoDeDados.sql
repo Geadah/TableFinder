@@ -1,4 +1,5 @@
-drop database TableFinder
+--drop database TableFinder
+--use master
 create database TableFinder
 go
 
@@ -7,21 +8,27 @@ go
 
 create table cadastro
 (
-	id_usuario integer identity primary key,
+	id_usuario integer identity(1,1) primary key,
 	nome_completo varchar(50),
 	cpf varchar(50),
 	email varchar(50),
 	login varchar(12),
-	senha varchar(500)
-)
+	senha varchar(500),
+	administrador bit default 0
+);
 
+insert into cadastro
+ values 
+ ('Administrador','09339704983', 'admin@tablefinder.com.br','Admin','admin123', 1);
+
+ --drop table cadastro
 select * from cadastro
 
 
 
 create table estabelecimento
 (
-id_estabelecimento integer identity primary key,
+id_estabelecimento integer identity(1,1) primary key,
 nome varchar(50),
 descricao text,
 imagem varchar(1000),
@@ -29,7 +36,7 @@ cnpj varchar(50),
 localizacao varchar(100),
 Aprovado int default 0
 )
-drop table estabelecimento
+--drop table estabelecimento
 insert into estabelecimento
 values
 (
@@ -49,31 +56,7 @@ cozinha do nordeste','sadsda','564564564564','Rua Chinelo Rasgado','1'
 
 select * from estabelecimento
 
-drop table estabelecimento
-
-create table cardapio
-(
-id_cardapio integer identity primary key,
-id_estabelecimento integer references estabelecimento (id_estabelecimento),
-id_tipo integer references tipo_comida (tipoId),
-produto varchar(50),
-descricao text,
-preco varchar(50),
-imagem varchar(1000),
-)
-drop table cardapio
-
-
-
-insert into cardapio
-values
-('1','2','Carne de Cavalo','Carne do cavalo do seu pai','R$200,00','dsadd')
-insert into cardapio
-values
-('2','2','Carne de Elefante','Carne da elefanta gorda, aquela sua tia','R$2548,00','dsaddsa')
-
-select * from cardapio
-drop table cardapio
+--drop table estabelecimento
 
 
 update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 1;
@@ -84,7 +67,7 @@ update estabelecimento set imagem = 'smalahove_just_eaten.jpg' where id_estabele
 
 create table feedback
 (
-id_feedback integer identity primary key not null,
+id_feedback integer identity(1,1) primary key not null,
 id_usuario int foreign key references cadastro (id_usuario),
 id_estabelecimento int foreign key references estabelecimento (id_estabelecimento),
 data_hora datetime not null default getdate(),
@@ -92,7 +75,7 @@ opiniao text,
 nota int null
 )
 
-drop table feedback
+--drop table feedback
 
 
 SELECT 
@@ -107,7 +90,7 @@ SELECT
 
 create table tipo_comida
 (
-tipoId int identity primary key,
+tipoId int identity(1,1) primary key,
 tipoNome varchar(20),
 
 )	
@@ -120,4 +103,28 @@ values
 ('Massa'),
 ('Oriental'),
 ('Vegetariano'),
-('Vegano')								
+('Vegano');
+
+create table cardapio
+(
+id_cardapio integer identity(1,1) primary key,
+id_estabelecimento integer references estabelecimento (id_estabelecimento),
+id_tipo integer references tipo_comida (tipoId),
+produto varchar(50),
+descricao text,
+preco varchar(50),
+imagem varchar(1000),
+)
+--drop table cardapio
+
+
+
+insert into cardapio
+values
+('1','2','Carne de Cavalo','Carne do cavalo do seu pai','R$200,00','dsadd')
+insert into cardapio
+values
+('2','2','Carne de Elefante','Carne da elefanta gorda, aquela sua tia','R$2548,00','dsaddsa')
+
+select * from cardapio
+--drop table cardapio					

@@ -22,6 +22,8 @@ namespace TableFinder.Models
 
         public string Senha { get; set; }
 
+        public bool Administrador { get; set; }
+
         [ScriptIgnore]
         [IgnoreDataMember]
         public IIdentity Identity

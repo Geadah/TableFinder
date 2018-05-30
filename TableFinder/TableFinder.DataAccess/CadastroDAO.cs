@@ -67,7 +67,8 @@ namespace TableFinder.DataAccess
                         Email = row["email"].ToString(),
                         CPF = row["cpf"].ToString(),
                         Login = row["login"].ToString(),
-                        Senha = row["senha"].ToString()
+                        Senha = row["senha"].ToString(),
+                        Administrador = Convert.ToBoolean(row["administrador"])
                     };
 
                     return usuario;

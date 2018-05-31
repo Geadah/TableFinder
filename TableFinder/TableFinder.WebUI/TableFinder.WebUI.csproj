@@ -155,6 +155,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NavegacaoController.cs" />
+    <Compile Include="Controllers\TComidaController.cs" />
     <Compile Include="CustomPrincipalSerializeModel.cs" />
     <Compile Include="FormsAuthenticationUtil.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,7 +220,9 @@
     <Content Include="Views\Cardapio\Index.cshtml" />
     <Content Include="Views\Aprovacao\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\TComida\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

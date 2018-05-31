@@ -18,7 +18,7 @@
                             <td>@item.Nome</td>
                             <td>@item.Descricao</td>
                             <td>
-                                <a href="#">Aprovar</a>
+                                <a href="@Url.Action("Aprovar","Aprovacao", new { @id_estabelecimento = item.Id })">Aprovar</a>
                             </td>
                         </tr>
                     }

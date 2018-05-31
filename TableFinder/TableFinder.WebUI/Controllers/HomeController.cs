@@ -11,7 +11,7 @@ namespace TableFinder.WebUI.Controllers
     {
         public ActionResult Index()
         {
-            var lst = new EstabelecimentoDAO().BuscarTodos();
+            var lst = new EstabelecimentoDAO().BuscarAprovados();
             return View(lst);
         }
     }

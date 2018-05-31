@@ -11,9 +11,16 @@ namespace TableFinder.WebUI.Controllers
     {
         // GET: Aprovacao
         public ActionResult Index()
+
         {
             var lst = new EstabelecimentoDAO().BuscarNaoAprovados();
             return View(lst);
+        }
+
+        public ActionResult Aprovar(int id_estabelecimento)
+        {
+            new EstabelecimentoDAO().Alterar(id_estabelecimento);
+            return RedirectToAction("Index", "Aprovacao");
         }
     }
 }

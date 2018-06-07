@@ -2,26 +2,52 @@
 @model List<Estabelecimento>
 
 <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4 text-center">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <img src="@Url.Content(string.Format("~/Images/{0}", item.Imagem))" style="max-width: 360px; max-height: 240px;" />
-                </div>
-            </div>
+    <div class="col-md-2">
+        @foreach (var tipo in (List<TComida>)ViewBag.Tipos)
+        {
             <div class="row">
                 <div class="col-md-12">
-                    <a href="@Url.Action("Index", "Navegacao", new { @id = item.Id })">
-                        <h3>@item.Nome</h3>
-                    </a>
+                    <input type="checkbox" />
+                    @tipo.TipoNome
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @(item.Descricao.Length > 100 ? item.Descricao.Substring(0, 100) + "..." : item.Descricao)
-                </div>
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-block">
+                    Buscar
+                </button>
             </div>
         </div>
-    }
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <img src="@Url.Content(string.Format("~/Images/{0}", item.Imagem))" style="width: 100%; max-height: 200px;" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("Index", "Navegacao", new { @id = item.Id })">
+                                <h3>@item.Nome</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @(item.Descricao.Length > 100 ? item.Descricao.Substring(0, 100) + "..." : item.Descricao)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
 </div>
+
+
+

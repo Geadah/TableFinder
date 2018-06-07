@@ -73,9 +73,7 @@ namespace TableFinder.DataAccess
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),
-                            Imagem = row["imagem"].ToString(),
-                            Tipo = row["tipo"].ToString()
-
+                            Imagem = row["imagem"].ToString()
                         };
 
                         lst.Add(cardapio);
@@ -120,8 +118,7 @@ namespace TableFinder.DataAccess
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),
-                            Imagem = row["imagem"].ToString(),
-                            Tipo = row["tipo"].ToString()
+                            Imagem = row["imagem"].ToString()
                         };
 
                         lst.Add(cardapio);

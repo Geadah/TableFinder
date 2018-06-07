@@ -12,6 +12,7 @@ namespace TableFinder.WebUI.Controllers
         public ActionResult Index()
         {
             var lst = new EstabelecimentoDAO().BuscarAprovados();
+            ViewBag.Tipos = new TComidaDAO().BuscarTodos();
             return View(lst);
         }
     }

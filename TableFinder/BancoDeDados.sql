@@ -1,5 +1,3 @@
---drop database TableFinder
---use master
 create database TableFinder
 go
 
@@ -17,84 +15,57 @@ create table cadastro
 	administrador bit default 0
 );
 
-insert into cadastro
- values 
- ('Administrador','09339704983', 'admin@tablefinder.com.br','Admin','admin123', 1);
-
- --drop table cadastro
-select * from cadastro
-
-
+insert into cadastro values ('Administrador','065.961.317-42', 'admin@tablefinder.com.br', 'Admin', 'admin123', 1);
+insert into cadastro values ('Usuário 1','030.504.189-40', 'usuario1@tablefinder.com.br', 'Usuario1', '123', 0);
 
 create table estabelecimento
 (
-id_estabelecimento integer identity(1,1) primary key,
-nome varchar(50),
-descricao text,
-imagem varchar(1000),
-cnpj varchar(50),
-localizacao varchar(100),
-Aprovado int default 0
-)
---drop table estabelecimento
-insert into estabelecimento
-values
-(
-'Hamburgão do Gilberto','dsadjsadjsajdhsadhsadjsahdljsahdhsalkdjksahdlksahsahd
-hsajdhashdljsahdlkhsalkdhsalkdhsalkhdlksakhdsalkdhsalkhdksahdlksahdksa
-sahldhsalkdhsalkhdksahdlksahlkdhsalkdhsalkhdlksadlkhsadhsalkhdsadlkhsakdhlksahd','sadsadd','354354242435454','Casa da tua mãe','1'
-)
+	id_estabelecimento integer identity(1,1) primary key,
+	nome varchar(50),
+	descricao varchar(max),
+	imagem varchar(2000),
+	cnpj varchar(50),
+	localizacao varchar(1000),
+	aprovado int default 0
+);
 
 insert into estabelecimento
 values
 (
-'Iguarias do Edemar','Só carninha da boa e feita na hora
-tudo feito fresquinho e bem saboroso pelo grandioso e renomado
-chefe, o Edemar Raimundo Eliziano da Silva, o melhor chefe de
-cozinha do nordeste','sadsda','564564564564','Rua Chinelo Rasgado','1'
-)
+	'Hamburgão do Gilberto',
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+	'hamburguer.jpg',
+	'71.845.217/0001-40',
+	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
+	'1'
+);
 
-select * from estabelecimento
-
---drop table estabelecimento
-
-
-update estabelecimento set imagem = 'hamburguer.jpg' where id_estabelecimento = 1;
-
-update estabelecimento set imagem = 'smalahove_just_eaten.jpg' where id_estabelecimento = 2;
-
-
+insert into estabelecimento
+values
+(
+	'Iguarias do Edemar',
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+	'smalahove_just_eaten.jpg',
+	'21.187.149/0001-00',
+	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
+	'1'
+);
 
 create table feedback
 (
-id_feedback integer identity(1,1) primary key not null,
-id_usuario int foreign key references cadastro (id_usuario),
-id_estabelecimento int foreign key references estabelecimento (id_estabelecimento),
-data_hora datetime not null default getdate(),
-opiniao text,
-nota int null
-)
-
---drop table feedback
-
-
-SELECT 
-                                    p.*, 
-                                    u.nome_completo as usuario 
-                                FROM feedback p 
-                                INNER JOIN cadastro u ON (u.id_usuario = p.id_usuario);
-
-
-								select * from feedback;
-
+	id_feedback integer identity(1,1) primary key not null,
+	id_usuario int foreign key references cadastro (id_usuario),
+	id_estabelecimento int foreign key references estabelecimento (id_estabelecimento),
+	data_hora datetime not null default getdate(),
+	opiniao varchar(max),
+	nota int null
+);
 
 create table tipo_comida
 (
-tipoId int identity(1,1) primary key,
-tipoNome varchar(20),
-
-)	
-select * from tipo_comida
+	tipoId int identity(1,1) primary key,
+	tipoNome varchar(20)
+);
 
 insert into tipo_comida
 values
@@ -107,24 +78,15 @@ values
 
 create table cardapio
 (
-id_cardapio integer identity(1,1) primary key,
-id_estabelecimento integer references estabelecimento (id_estabelecimento),
-id_tipo integer references tipo_comida (tipoId),
-produto varchar(50),
-descricao text,
-preco varchar(50),
-imagem varchar(1000),
+	id_cardapio integer identity(1,1) primary key,
+	id_estabelecimento integer references estabelecimento (id_estabelecimento),
+	id_tipo integer references tipo_comida (tipoId),
+	produto varchar(200),
+	descricao varchar(max),
+	preco decimal(15,2)
 )
---drop table cardapio
-
-
 
 insert into cardapio
-values
-('1','2','Carne de Cavalo','Carne do cavalo do seu pai','R$200,00','dsadd')
-insert into cardapio
-values
-('2','2','Carne de Elefante','Carne da elefanta gorda, aquela sua tia','R$2548,00','dsaddsa')
-
-select * from cardapio
---drop table cardapio					
+values (1, 1, 'Carne de Cavalo','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',132.00);
+insert into cardapio 
+values (2, 2, 'Carne de Elefante','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',248.00);

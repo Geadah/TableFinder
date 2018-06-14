@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TableFinder.Models;
 
 namespace TableFinder.DataAccess
@@ -14,7 +12,7 @@ namespace TableFinder.DataAccess
         public void Inserir(Feedback obj)
         {
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de posts
                 string strSQL = @"INSERT INTO feedback (id_usuario, data_hora, opiniao, id_estabelecimento, nota) VALUES (@id_usuario, @data_hora, @opiniao , @id_estabelecimento, @nota);";
@@ -44,7 +42,7 @@ namespace TableFinder.DataAccess
         public void Atualizar(Feedback obj)
         {
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de posts
                 string strSQL = @"UPDATE feedback set 
@@ -80,7 +78,7 @@ namespace TableFinder.DataAccess
         public void Deletar(Feedback obj)
         {
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de posts
                 string strSQL = @"DELETE FROM feedback where id_feedback = @id_feedback;";
@@ -105,7 +103,7 @@ namespace TableFinder.DataAccess
         public Feedback BuscarPorId(int id)
         {
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para selecionar todos os registros na tabela de posts
                 string strSQL = @"SELECT * FROM feedback where id_feedback = @id_feedback;";
@@ -148,7 +146,7 @@ namespace TableFinder.DataAccess
             var lst = new List<Feedback>();
 
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para selecionar todos os registros na tabela de posts
                 string strSQL = @"SELECT 
@@ -201,7 +199,7 @@ namespace TableFinder.DataAccess
             var lst = new List<Feedback>();
 
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para selecionar todos os registros na tabela de posts
                 string strSQL = @"SELECT 

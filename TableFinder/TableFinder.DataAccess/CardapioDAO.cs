@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using TableFinder.Models;
@@ -10,7 +11,7 @@ namespace TableFinder.DataAccess
     {
         public void Inserir(Cardapio obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
                 string strSQL = @"INSERT INTO estabelecimento (id_tipo, produto, descricao, preco, imagem) VALUES (@id_tipo, @produto, @descricao, @preco, @imagem);";
@@ -40,7 +41,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<Cardapio>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM cardapio;";
@@ -91,7 +92,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<Cardapio>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT 
@@ -109,6 +110,7 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = estabelecimento;
                     cmd.Connection = conn;
                     cmd.CommandText = strSQL;
+
                     //Executando instrução SQL
                     var dataReader = cmd.ExecuteReader();
                     var dt = new DataTable();
@@ -141,6 +143,7 @@ namespace TableFinder.DataAccess
                     }
                 }
             }
+
             return lst;
         }
     }

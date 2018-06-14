@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using TableFinder.Models;
@@ -10,7 +11,7 @@ namespace TableFinder.DataAccess
     {
         public void Inserir(Estabelecimento obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
                 string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao,aprovado) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao, @aprovado);";
@@ -37,55 +38,36 @@ namespace TableFinder.DataAccess
             }
         }
 
-        public List<Estabelecimento> BuscarTodos()
+        public void Alterar(int idEstabelecimento)
         {
-            var lst = new List<Estabelecimento>();
-            //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
-                //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
-                string strSQL = @"SELECT * FROM estabelecimento;";
+                //Criando instrução sql para inserir na tabela de cidades
+                string strSQL = @"UPDATE estabelecimento set Aprovado = 1 where id_estabelecimento = @id_estabelecimento;";
 
-                //Criando um comando SQL para ser executado na base de dados
+                //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
+                    cmd.Connection = conn;
+                    //Preenchendo os parâmetros da instrução sql
+                    cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = idEstabelecimento;
+
+
                     //Abrindo conexão com o banco de dados
                     conn.Open();
-                    cmd.Connection = conn;
-                    cmd.CommandText = strSQL;
-                    //Executando instrução SQL
-                    var dataReader = cmd.ExecuteReader();
-                    var dt = new DataTable();
-                    dt.Load(dataReader);
+                    //Executando instrução sql
+                    cmd.ExecuteNonQuery();
                     //Fechando conexão com o banco de dados
                     conn.Close();
-
-                    //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var estabelecimento = new Estabelecimento()
-                        {
-                            Id = Convert.ToInt32(row["id_estabelecimento"]),
-                            Nome = row["nome"].ToString(),
-                            Descricao = row["descricao"].ToString(),
-                            Imagem = row["imagem"].ToString(),
-                            CNPJ = row["cnpj"].ToString(),
-                            Localizacao = row["localizacao"].ToString(),
-                            Aprovado = Convert.ToInt32(row["Aprovado"])
-                        };
-
-                        lst.Add(estabelecimento);
-                    }
                 }
             }
-            return lst;
         }
 
         public Estabelecimento BuscarPorId(int id)
         {
             var lst = new List<Estabelecimento>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM estabelecimento where id_estabelecimento = @id_estabelecimento;";
@@ -126,11 +108,56 @@ namespace TableFinder.DataAccess
             }
         }
 
+        public List<Estabelecimento> BuscarTodos()
+        {
+            var lst = new List<Estabelecimento>();
+            //Criando uma conexão com o banco de dados
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
+            {
+                //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
+                string strSQL = @"SELECT * FROM estabelecimento;";
+
+                //Criando um comando SQL para ser executado na base de dados
+                using (SqlCommand cmd = new SqlCommand(strSQL))
+                {
+                    //Abrindo conexão com o banco de dados
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = strSQL;
+                    //Executando instrução SQL
+                    var dataReader = cmd.ExecuteReader();
+                    var dt = new DataTable();
+                    dt.Load(dataReader);
+                    //Fechando conexão com o banco de dados
+                    conn.Close();
+
+                    //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var estabelecimento = new Estabelecimento()
+                        {
+                            Id = Convert.ToInt32(row["id_estabelecimento"]),
+                            Nome = row["nome"].ToString(),
+                            Descricao = row["descricao"].ToString(),
+                            Imagem = row["imagem"].ToString(),
+                            CNPJ = row["cnpj"].ToString(),
+                            Localizacao = row["localizacao"].ToString(),
+                            Aprovado = Convert.ToInt32(row["Aprovado"])
+                        };
+
+                        lst.Add(estabelecimento);
+                    }
+                }
+            }
+
+            return lst;
+        }
+
         public List<Estabelecimento> BuscarNaoAprovados()
         {
             var lst = new List<Estabelecimento>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM estabelecimento where aprovado = 0;";
@@ -167,13 +194,15 @@ namespace TableFinder.DataAccess
                     }
                 }
             }
+
             return lst;
         }
+
         public List<Estabelecimento> BuscarAprovados()
         {
             var lst = new List<Estabelecimento>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM estabelecimento where aprovado = 1;";
@@ -210,32 +239,8 @@ namespace TableFinder.DataAccess
                     }
                 }
             }
+
             return lst;
-        }
-
-        public void Alterar(int id_estabelecimento)
-        {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
-            {
-                //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"UPDATE estabelecimento set Aprovado = 1 where id_estabelecimento = @id_estabelecimento;";
-
-                //Criando um comando sql que será executado na base de dados
-                using (SqlCommand cmd = new SqlCommand(strSQL))
-                {
-                    cmd.Connection = conn;
-                    //Preenchendo os parâmetros da instrução sql
-                    cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = id_estabelecimento;
-                    
-
-                    //Abrindo conexão com o banco de dados
-                    conn.Open();
-                    //Executando instrução sql
-                    cmd.ExecuteNonQuery();
-                    //Fechando conexão com o banco de dados
-                    conn.Close();
-                }
-            }
         }
     }
 }

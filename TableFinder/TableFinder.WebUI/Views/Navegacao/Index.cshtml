@@ -1,135 +1,131 @@
 ﻿@using TableFinder.Models
 @model Estabelecimento
-<div class="row">
-    @*PRIMEIRA COLUNA*@
-    <div class="col-md-4 text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="@Url.Content(string.Format("~/Images/{0}", Model.Imagem))" style="max-width: 360px; max-height: 240px;" />
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#dados" aria-controls="dados" role="tab" data-toggle="tab">Dados Gerais</a>
+        </li>
+        <li role="presentation">
+            <a href="#cardapio" aria-controls="cardapio" role="tab" data-toggle="tab">Cardápio</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content" style="padding-top: 20px;">
+        <div role="tabpanel" class="tab-pane active" id="dados">
+            <div class="row">
+                @*PRIMEIRA COLUNA*@
+                <div class="col-md-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="@Url.Content(string.Format("~/Images/{0}", Model.Imagem))" style="max-width: 360px; max-height: 240px;" />
+                        </div>
+                    </div>
+                </div>
+                @*SEGUNDA COLUNA*@
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>@Model.Nome</h2>
+                            <p>
+                                @Model.Descricao
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14408.336339142155!2d-49.2996609!3d-25.4688676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8f3ff96168aa61a5!2sSistema+Fiep+-+Sesi%2FSenai%2FIEL+-+Port%C3%A3o%2C+Curitiba!5e0!3m2!1spt-BR!2sbr!4v1522367377181" height="450" frameborder="0" style="border: 0; width: 100%;" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @*SEGUNDA COLUNA*@
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>@Model.Nome</h2>
-                <p>
-                    @Model.Descricao
-                </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="@Url.Action("EnviarMsg", "Navegacao")" class="form-horizontal">
+                        <input name="Estabelecimento.Id" type="hidden" value="@Model.Id" />
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Envie um comentário:</label>
+                                <textarea name="Opiniao" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary" value="Enviar" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14408.336339142155!2d-49.2996609!3d-25.4688676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8f3ff96168aa61a5!2sSistema+Fiep+-+Sesi%2FSenai%2FIEL+-+Port%C3%A3o%2C+Curitiba!5e0!3m2!1spt-BR!2sbr!4v1522367377181" height="450" frameborder="0" style="border: 0; width: 100%;" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nome do item</th>
-                    <th>Tipo</th>
-                    <th>Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Cardapio)
+            @if (Model != null && Model.Opinioes.Count > 0)
+            {
+                var rowIndex = 0;
+                var lastUser = 0;
+                foreach (var opiniao in Model.Opinioes)
                 {
-                    <tr>
-                        <td>@item.Produto</td>
-                        <td>@item.Tipo.TipoNome</td>
-                        <td>@item.Preco</td>
-                    </tr>
+                    if (lastUser > 0 && lastUser != opiniao.Usuario.Id)
+                    {
+                        rowIndex++;
+                    }
+                    if (rowIndex % 2 == 0)
+                    {
+                        <hr />
+                        <div class="row" style="background-color: white !important;">
+                            <div class="col-md-2 text-center-lg">
+                                <img class="img-circle" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                            </div>
+                            <div class="col-md-10">
+                                <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
+                                <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
+                                <p>
+                                    @opiniao.Opiniao
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <hr />
+                        <div class="row" style="background-color: white !important;">
+                            <div class="col-md-2 col-md-push-10 text-center-lg text-right-not-lg">
+                                <img class="img-circle direita" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
+                            </div>
+                            <div class="col-md-10 col-md-pull-2 text-right">
+                                <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
+                                <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
+                                <p>
+                                    @opiniao.Opiniao
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    lastUser = opiniao.Usuario.Id;
                 }
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-12">
-        <form action="@Url.Action("EnviarMsg", "Navegacao")" class="form-horizontal">
-            <input name="Estabelecimento.Id" type="hidden" value="@Model.Id" />
-            <div class="form-group">
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="cardapio">
+            <div class="row">
                 <div class="col-md-12">
-                    <label class="control-label">Envie um comentário:</label>
-                    <textarea name="Opiniao" class="form-control" rows="5"></textarea>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome do item</th>
+                                <th>Tipo</th>
+                                <th>Preço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Cardapio)
+                            {
+                                <tr>
+                                    <td>@item.Produto</td>
+                                    <td>@item.Tipo.TipoNome</td>
+                                    <td>@item.Preco</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <input type="submit" class="btn btn-primary" value="Enviar" />
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-@if (Model != null && Model.Opinioes.Count > 0)
-{
-    var rowIndex = 0;
-    var lastUser = 0;
-    foreach (var opiniao in Model.Opinioes)
-    {
-        if (lastUser > 0 && lastUser != opiniao.Usuario.Id)
-        {
-            rowIndex++;
-        }
-        if (rowIndex % 2 == 0)
-        {
-            <hr />
-            <div class="row" style="background-color: white !important;">
-                <div class="col-md-2 text-center-lg">
-                    <img class="img-circle" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
-                </div>
-                <div class="col-md-10">
-                    <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
-                    <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
-                    <p>
-                        @opiniao.Opiniao
-                    </p>
-                </div>
-            </div>
-        }
-        else
-        {
-            <hr />
-            <div class="row" style="background-color: white !important;">
-                <div class="col-md-2 col-md-push-10 text-center-lg text-right-not-lg">
-                    <img class="img-circle direita" src="@Url.Content("~/Images/avatar_2x.png")" width="100" height="100">
-                </div>
-                <div class="col-md-10 col-md-pull-2 text-right">
-                    <h4 style="font-weight: bold;">@opiniao.Usuario.NomeCompleto</h4>
-                    <h6 style="color: #808080;">@string.Format("{0:dd/MM/yyyy HH:mm}", opiniao.Data_Hora)</h6>
-                    <p>
-                        @opiniao.Opiniao
-                    </p>
-                </div>
-            </div>
-        }
-        lastUser = opiniao.Usuario.Id;
-    }
-}
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Cardápio</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Ok</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

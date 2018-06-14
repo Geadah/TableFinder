@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TableFinder.Models;
 
 namespace TableFinder.DataAccess
@@ -15,7 +13,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<TComida>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM tipo_comida where tipoId = @tipoId;";
@@ -55,7 +53,7 @@ namespace TableFinder.DataAccess
         {
             var lst = new List<TComida>();
             //Criando uma conexão com o banco de dados
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
                 string strSQL = @"SELECT * FROM tipo_comida;";
@@ -88,6 +86,7 @@ namespace TableFinder.DataAccess
                     }
                 }
             }
+
             return lst;
         }
     }

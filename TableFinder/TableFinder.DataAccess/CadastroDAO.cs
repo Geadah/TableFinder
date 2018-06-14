@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using TableFinder.Models;
@@ -9,7 +10,7 @@ namespace TableFinder.DataAccess
     {
         public void Inserir(Cadastro obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
                 string strSQL = @"INSERT INTO cadastro (nome_completo, cpf, email, login, senha) VALUES (@nome_completo, @cpf, @email, @login, @senha);";
@@ -37,7 +38,7 @@ namespace TableFinder.DataAccess
 
         public Cadastro Logar(Cadastro obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 string strSQL = @"SELECT TOP 1 * FROM cadastro where login = @login and senha = @senha;";
 

@@ -173,12 +173,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\avatar_100px.png" />
+    <Content Include="Images\avatar_2x.png" />
     <Content Include="Images\aviao.jpg" />
     <Content Include="Images\capturar_7oh_icon.ico" />
     <Content Include="Images\clickdisk_4471420150417.jpg" />
+    <Content Include="Images\elefante-africano-235722367.jpg" />
     <Content Include="Images\hamburguer.jpg" />
     <Content Include="Images\logo fiep - laboratórios.JPG" />
     <Content Include="Images\loja-3.jpg" />
+    <Content Include="Images\macaco evoluido pançudo gorda macaca.jpeg" />
+    <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Nature-Vintage-City-Wallpaper.jpg" />
     <Content Include="Images\smalahove_just_eaten.jpg" />
     <Content Include="Scripts\bootstrap.js" />

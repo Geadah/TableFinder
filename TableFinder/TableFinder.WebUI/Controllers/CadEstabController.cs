@@ -12,7 +12,6 @@ namespace TableFinder.WebUI.Controllers
     [Authorize]
     public class CadEstabController : Controller
     {
-        // GET: CadEstab
         public ActionResult Index()
         {
             return View();
@@ -25,9 +24,11 @@ namespace TableFinder.WebUI.Controllers
 
         public ActionResult Salvar(Estabelecimento obj)
         {
+            obj.Usuario = new Cadastro() { Id = ((Cadastro)User).Id };
+
             new EstabelecimentoDAO().Inserir(obj);
 
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

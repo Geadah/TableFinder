@@ -26,7 +26,8 @@ create table estabelecimento
 	imagem varchar(2000),
 	cnpj varchar(50),
 	localizacao varchar(1000),
-	aprovado int default 0
+	aprovado int default 0,
+	id_usuario int foreign key references cadastro (id_usuario),
 );
 
 insert into estabelecimento
@@ -37,7 +38,8 @@ values
 	'hamburguer.jpg',
 	'71.845.217/0001-40',
 	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
-	'1'
+	'1',
+	'2'
 );
 
 insert into estabelecimento
@@ -48,7 +50,8 @@ values
 	'smalahove_just_eaten.jpg',
 	'21.187.149/0001-00',
 	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
-	'1'
+	'1',
+	'2'
 );
 
 create table feedback

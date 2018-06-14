@@ -14,7 +14,8 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao,aprovado) VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao, @aprovado);";
+                string strSQL = @"INSERT INTO estabelecimento (nome, descricao, imagem, cnpj, localizacao, aprovado, id_usuario) 
+                                  VALUES (@nome, @descricao, @imagem, @cnpj, @localizacao, @aprovado, @id_usuario);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -26,7 +27,8 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@imagem", SqlDbType.VarChar).Value = obj.Imagem;
                     cmd.Parameters.Add("@cnpj", SqlDbType.VarChar).Value = obj.CNPJ;
                     cmd.Parameters.Add("@localizacao", SqlDbType.VarChar).Value = obj.Localizacao;
-                    cmd.Parameters.Add("@Aprovado", SqlDbType.VarChar).Value = obj.Aprovado;
+                    cmd.Parameters.Add("@aprovado", SqlDbType.Bit).Value = obj.Aprovado;
+                    cmd.Parameters.Add("@id_usuario", SqlDbType.Int).Value = obj.Usuario.Id;
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();
@@ -43,7 +45,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"UPDATE estabelecimento set Aprovado = 1 where id_estabelecimento = @id_estabelecimento;";
+                string strSQL = @"UPDATE estabelecimento SET aprovado = 1 WHERE id_estabelecimento = @id_estabelecimento;";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -100,7 +102,8 @@ namespace TableFinder.DataAccess
                         Imagem = row["imagem"].ToString(),
                         CNPJ = row["cnpj"].ToString(),
                         Localizacao = row["localizacao"].ToString(),
-                        Aprovado = Convert.ToInt32(row["Aprovado"])
+                        Aprovado = Convert.ToInt32(row["aprovado"]),
+                        Usuario = new Cadastro() { Id = Convert.ToInt32(row["id_usuario"]) }
                     };
 
                     return estabelecimento;
@@ -142,7 +145,8 @@ namespace TableFinder.DataAccess
                             Imagem = row["imagem"].ToString(),
                             CNPJ = row["cnpj"].ToString(),
                             Localizacao = row["localizacao"].ToString(),
-                            Aprovado = Convert.ToInt32(row["Aprovado"])
+                            Aprovado = Convert.ToInt32(row["aprovado"]),
+                            Usuario = new Cadastro() { Id = Convert.ToInt32(row["id_usuario"]) }
                         };
 
                         lst.Add(estabelecimento);
@@ -187,7 +191,8 @@ namespace TableFinder.DataAccess
                             Imagem = row["imagem"].ToString(),
                             CNPJ = row["cnpj"].ToString(),
                             Localizacao = row["localizacao"].ToString(),
-                            Aprovado = Convert.ToInt32(row["Aprovado"])
+                            Aprovado = Convert.ToInt32(row["aprovado"]),
+                            Usuario = new Cadastro() { Id = Convert.ToInt32(row["id_usuario"]) }
                         };
 
                         lst.Add(estabelecimento);
@@ -232,7 +237,8 @@ namespace TableFinder.DataAccess
                             Imagem = row["imagem"].ToString(),
                             CNPJ = row["cnpj"].ToString(),
                             Localizacao = row["localizacao"].ToString(),
-                            Aprovado = Convert.ToInt32(row["Aprovado"])
+                            Aprovado = Convert.ToInt32(row["aprovado"]),
+                            Usuario = new Cadastro() { Id = Convert.ToInt32(row["id_usuario"]) }
                         };
 
                         lst.Add(estabelecimento);

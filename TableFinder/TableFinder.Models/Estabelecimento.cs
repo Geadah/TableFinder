@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TableFinder.Models
 {
@@ -15,6 +14,7 @@ namespace TableFinder.Models
         public string CNPJ { get; set; }
         public string Localizacao { get; set; }
         public int Aprovado { get; set; }
+        public Cadastro Usuario { get; set; }
         public List<Feedback> Opinioes { get; set; }
         public List<Cardapio> Cardapio { get; set; }
 
@@ -23,6 +23,5 @@ namespace TableFinder.Models
             this.Opinioes = new List<Feedback>();
             this.Cardapio = new List<Cardapio>();
         }
-
     }
 }

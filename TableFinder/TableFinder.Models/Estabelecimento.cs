@@ -16,5 +16,13 @@ namespace TableFinder.Models
         public string Localizacao { get; set; }
         public int Aprovado { get; set; }
         public List<Feedback> Opinioes { get; set; }
+        public List<Cardapio> Cardapio { get; set; }
+
+        public Estabelecimento()
+        {
+            this.Opinioes = new List<Feedback>();
+            this.Cardapio = new List<Cardapio>();
+        }
+
     }
 }

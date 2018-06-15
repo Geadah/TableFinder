@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TableFinder.Models;
 
 namespace TableFinder.DataAccess
@@ -16,15 +13,15 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security=SSPI;"))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (produto, tipo, descricao, preco, imagem) VALUES (@produto, @tipo, @descricao, @preco, @imagem);";
+                string strSQL = @"INSERT INTO estabelecimento (id_tipo, produto, descricao, preco, imagem) VALUES (@id_tipo, @produto, @descricao, @preco, @imagem);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
                     cmd.Connection = conn;
                     //Preenchendo os parâmetros da instrução sql
+                    cmd.Parameters.Add("@id_tipo", SqlDbType.Int).Value = obj.Tipo.TipoId;
                     cmd.Parameters.Add("@produto", SqlDbType.VarChar).Value = obj.Produto;
-                    cmd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = obj.Tipo;
                     cmd.Parameters.Add("@descricao", SqlDbType.VarChar).Value = obj.Descricao;
                     cmd.Parameters.Add("@preco", SqlDbType.VarChar).Value = obj.Preco;
                     cmd.Parameters.Add("@imagem", SqlDbType.VarChar).Value = obj.Imagem;
@@ -67,9 +64,16 @@ namespace TableFinder.DataAccess
                     {
                         var cardapio = new Cardapio()
                         {
-                            Id = Convert.ToInt32(row["id_estabelecimento"]),
-                            Idc = Convert.ToInt32(row["id_cardapio"]),
-                            IdTC = Convert.ToInt32(row["id_tipo"]),
+                            Id = Convert.ToInt32(row["id_cardapio"]),
+                            Estabelecimento = new Estabelecimento()
+                            {
+                                Id = Convert.ToInt32(row["id_estabelecimento"])
+                            },
+                            Tipo = new TComida()
+                            {
+                                TipoId = Convert.ToInt32(row["id_tipo"]),
+                                TipoNome = row["tipoNome"].ToString()
+                            },
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),
@@ -90,7 +94,12 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog=TableFinder; Data Source=localhost; Integrated Security = SSPI;"))
             {
                 //Criando instrução na tabela SQL para selecionar todos os registros na tabela de estados
-                string strSQL = @"SELECT * FROM cardapio where id_estabelecimento = @id_estabelecimento;";
+                string strSQL = @"SELECT 
+                                      c.*,
+                                      tc.tipoNome
+                                  FROM cardapio c
+                                  INNER JOIN tipo_comida tc on (tc.tipoId = c.id_tipo)
+                                  WHERE c.id_estabelecimento = @id_estabelecimento;";
 
                 //Criando um comando SQL para ser executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -112,9 +121,16 @@ namespace TableFinder.DataAccess
                     {
                         var cardapio = new Cardapio()
                         {
-                            Id = Convert.ToInt32(row["id_estabelecimento"]),
-                            Idc = Convert.ToInt32(row["id_cardapio"]),
-                            IdTC = Convert.ToInt32(row["id_tipo"]),
+                            Id = Convert.ToInt32(row["id_cardapio"]),
+                            Estabelecimento = new Estabelecimento()
+                            {
+                                Id = Convert.ToInt32(row["id_estabelecimento"])
+                            },
+                            Tipo = new TComida()
+                            {
+                                TipoId = Convert.ToInt32(row["id_tipo"]),
+                                TipoNome = row["tipoNome"].ToString()
+                            },
                             Produto = row["produto"].ToString(),
                             Descricao = row["descricao"].ToString(),
                             Preco = row["preco"].ToString(),

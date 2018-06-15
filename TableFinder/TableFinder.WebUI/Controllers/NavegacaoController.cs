@@ -14,6 +14,7 @@ namespace TableFinder.WebUI.Controllers
         {
             var obj = new EstabelecimentoDAO().BuscarPorId(id);
             obj.Opinioes = new FeedbackDAO().BuscarPorEstabelecimento(obj.Id);
+            obj.Cardapio = new CardapioDAO().BuscarPorEstab(obj.Id);
             return View(obj);
         }
 

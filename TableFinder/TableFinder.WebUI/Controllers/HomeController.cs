@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TableFinder.DataAccess;
+using TableFinder.Models;
 
 namespace TableFinder.WebUI.Controllers
 {
@@ -14,6 +15,27 @@ namespace TableFinder.WebUI.Controllers
             var lst = new EstabelecimentoDAO().BuscarAprovados();
             ViewBag.Tipos = new TComidaDAO().BuscarTodos();
             return View(lst);
+        }
+
+        public ActionResult Buscar(int[] tipos)
+        {
+            ViewBag.Tipos = new TComidaDAO().BuscarTodos();
+            var lst = new EstabelecimentoDAO().BuscarAprovados();
+            lst.ForEach(o =>
+            {
+                o.Cardapio = new CardapioDAO().BuscarPorEstab(o.Id).ToList();
+            });
+
+            var resultado = new List<Estabelecimento>();
+            foreach (var estab in lst)
+            {
+                if (estab.Cardapio.Any(c => tipos.Contains(c.Tipo.TipoId)))
+                {
+                    resultado.Add(estab);
+                }
+            }
+
+            return View("Index", resultado);
         }
     }
 }

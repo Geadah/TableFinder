@@ -3,22 +3,24 @@
 
 <div class="row">
     <div class="col-md-2">
-        @foreach (var tipo in (List<TComida>)ViewBag.Tipos)
-        {
-            <div class="row">
+        <form class="form-horizontal" action="@Url.Action("Buscar", "Home")">
+            @foreach (var tipo in (List<TComida>)ViewBag.Tipos)
+            {
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="checkbox" name="tipos" value="@tipo.TipoId" />
+                        @tipo.TipoNome
+                    </div>
+                </div>
+            }
+            <div class="form-group">
                 <div class="col-md-12">
-                    <input type="checkbox" />
-                    @tipo.TipoNome
+                    <button class="btn btn-primary btn-block">
+                        Buscar
+                    </button>
                 </div>
             </div>
-        }
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-primary btn-block">
-                    Buscar
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
     <div class="col-md-10">
         <div class="row">

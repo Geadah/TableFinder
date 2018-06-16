@@ -19,7 +19,7 @@ namespace TableFinder.WebUI.Controllers
 
         public ActionResult Aprovar(int id_estabelecimento)
         {
-            new EstabelecimentoDAO().Alterar(id_estabelecimento);
+            new EstabelecimentoDAO().Aprovar(id_estabelecimento);
             return RedirectToAction("Index", "Aprovacao");
         }
     }

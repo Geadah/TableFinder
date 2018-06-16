@@ -225,10 +225,9 @@
     <Content Include="Views\CadEstab\Index.cshtml" />
     <Content Include="Views\Cardapio\Index.cshtml" />
     <Content Include="Views\Aprovacao\Index.cshtml" />
+    <Content Include="Views\CadEstab\EstabList.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\TComida\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

@@ -17,16 +17,23 @@ namespace TableFinder.WebUI.Controllers
             return View();
         }
 
-        public ActionResult CadEstab()
+        public ActionResult EstabList()
         {
-            return View();
+            var usuario = new Cadastro() { Id = ((Cadastro)User).Id };
+            var lst = new EstabelecimentoDAO().BuscarPorDono(usuario.Id);
+            return View(lst);
         }
+
+
 
         public ActionResult Salvar(Estabelecimento obj)
         {
             obj.Usuario = new Cadastro() { Id = ((Cadastro)User).Id };
 
-            new EstabelecimentoDAO().Inserir(obj);
+            if (obj != null && obj.Id > 0)
+                new EstabelecimentoDAO().Atualizar(obj);
+            else
+                new EstabelecimentoDAO().Inserir(obj);
 
             return RedirectToAction("Index", "Home");
         }
@@ -54,5 +61,21 @@ namespace TableFinder.WebUI.Controllers
             }
             return Json(null);
         }
+
+        public ActionResult Editar(int id)
+        {
+            var obj = new EstabelecimentoDAO().BuscarPorId(id);
+            return View("Index", obj);
+
+
+        }
+
+        public ActionResult Excluir(int id)
+        {
+            new EstabelecimentoDAO().Excluir(id);
+            return RedirectToAction("EstabList", "CadEstab");
+        }
+
+
     }
 }

@@ -7,11 +7,11 @@ using TableFinder.Models;
 
 namespace TableFinder.DataAccess
 {
-    public class TComidaDAO
+    public class TipoComidaDAO
     {
-        public List<TComida> BuscarPorTipoComida(int TComida)
+        public List<TipoComida> BuscarPorTipoComida(int TComida)
         {
-            var lst = new List<TComida>();
+            var lst = new List<TipoComida>();
             //Criando uma conexão com o banco de dados
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
@@ -36,7 +36,7 @@ namespace TableFinder.DataAccess
                     //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
                     foreach (DataRow row in dt.Rows)
                     {
-                        var obj = new TComida()
+                        var obj = new TipoComida()
                         {
                             TipoId = Convert.ToInt32(row["tipoId"]),
                             TipoNome = row["tipoNome"].ToString()
@@ -49,9 +49,9 @@ namespace TableFinder.DataAccess
             return lst;
         }
 
-        public List<TComida> BuscarTodos()
+        public List<TipoComida> BuscarTodos()
         {
-            var lst = new List<TComida>();
+            var lst = new List<TipoComida>();
             //Criando uma conexão com o banco de dados
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
@@ -75,7 +75,7 @@ namespace TableFinder.DataAccess
                     //Percorrendo todos os registros encontrados na base de dados e adicionando em uma lista
                     foreach (DataRow row in dt.Rows)
                     {
-                        var obj = new TComida()
+                        var obj = new TipoComida()
                         {
                             TipoId = Convert.ToInt32(row["tipoId"]),
                             TipoNome = row["tipoNome"].ToString()

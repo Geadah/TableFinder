@@ -13,13 +13,13 @@ namespace TableFinder.WebUI.Controllers
         public ActionResult Index()
         {
             var lst = new EstabelecimentoDAO().BuscarAprovados();
-            ViewBag.Tipos = new TComidaDAO().BuscarTodos();
+            ViewBag.Tipos = new TipoComidaDAO().BuscarTodos();
             return View(lst);
         }
 
         public ActionResult Buscar(int[] tipos)
         {
-            ViewBag.Tipos = new TComidaDAO().BuscarTodos();
+            ViewBag.Tipos = new TipoComidaDAO().BuscarTodos();
             var lst = new EstabelecimentoDAO().BuscarAprovados();
             lst.ForEach(o =>
             {

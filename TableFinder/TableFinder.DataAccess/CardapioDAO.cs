@@ -27,6 +27,14 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@descricao", SqlDbType.VarChar).Value = obj.Descricao;
                     cmd.Parameters.Add("@preco", SqlDbType.Decimal).Value = obj.Preco;
 
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
+
                     //Abrindo conexão com o banco de dados
                     conn.Open();
                     //Executando instrução sql
@@ -55,6 +63,14 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@descricao", SqlDbType.VarChar).Value = obj.Descricao;
                     cmd.Parameters.Add("@preco", SqlDbType.Decimal).Value = obj.Preco;
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = obj.Id;
+
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();
@@ -130,7 +146,7 @@ namespace TableFinder.DataAccess
                         {
                             Id = Convert.ToInt32(row["id_estabelecimento"])
                         },
-                        Tipo = new TComida()
+                        Tipo = new TipoComida()
                         {
                             TipoId = Convert.ToInt32(row["id_tipo"]),
                             TipoNome = row["tipoNome"].ToString()
@@ -178,7 +194,7 @@ namespace TableFinder.DataAccess
                             {
                                 Id = Convert.ToInt32(row["id_estabelecimento"])
                             },
-                            Tipo = new TComida()
+                            Tipo = new TipoComida()
                             {
                                 TipoId = Convert.ToInt32(row["id_tipo"]),
                                 TipoNome = row["tipoNome"].ToString()
@@ -235,7 +251,7 @@ namespace TableFinder.DataAccess
                             {
                                 Id = Convert.ToInt32(row["id_estabelecimento"])
                             },
-                            Tipo = new TComida()
+                            Tipo = new TipoComida()
                             {
                                 TipoId = Convert.ToInt32(row["id_tipo"]),
                                 TipoNome = row["tipoNome"].ToString()

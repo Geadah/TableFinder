@@ -28,6 +28,13 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = obj.Estabelecimento.Id;
                     cmd.Parameters.Add("@nota", SqlDbType.Int).Value = obj.Nota;
 
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();
@@ -64,6 +71,14 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = obj.Estabelecimento.Id;
                     cmd.Parameters.Add("@nota", SqlDbType.Int).Value = obj.Nota;
                     cmd.Parameters.Add("@id_feedback", SqlDbType.Int).Value = obj.IdFeedback;
+
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();

@@ -26,6 +26,14 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = obj.Login;
                     cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = obj.Senha;
 
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
+
                     //Abrindo conexão com o banco de dados
                     conn.Open();
                     //Executando instrução sql

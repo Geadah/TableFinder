@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TableFinder.Models
 {
-    public class TComida
+    public class TipoComida
     {
         public int TipoId { get; set; }
         public string TipoNome { get; set; }

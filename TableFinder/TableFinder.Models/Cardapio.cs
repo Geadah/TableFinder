@@ -9,7 +9,7 @@ namespace TableFinder.Models
     {
         public int Id { get; set; }
         public Estabelecimento Estabelecimento { get; set; }
-        public TComida Tipo { get; set; }
+        public TipoComida Tipo { get; set; }
         public string Produto { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }

@@ -30,6 +30,14 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@aprovado", SqlDbType.Bit).Value = obj.Aprovado;
                     cmd.Parameters.Add("@id_usuario", SqlDbType.Int).Value = obj.Usuario.Id;
 
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
+
                     //Abrindo conexão com o banco de dados
                     conn.Open();
                     //Executando instrução sql
@@ -51,7 +59,7 @@ namespace TableFinder.DataAccess
                                     imagem = @imagem,
                                     cnpj = @cnpj,
                                     localizacao = @localizacao
-                                    WHERE id_estabelecimento = @id_estabelecimento;";
+                                  WHERE id_estabelecimento = @id_estabelecimento;";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -64,6 +72,38 @@ namespace TableFinder.DataAccess
                     cmd.Parameters.Add("@cnpj", SqlDbType.VarChar).Value = obj.CNPJ;
                     cmd.Parameters.Add("@localizacao", SqlDbType.VarChar).Value = obj.Localizacao;
                     cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = obj.Id;
+
+                    foreach (SqlParameter parameter in cmd.Parameters)
+                    {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                    }
+
+                    //Abrindo conexão com o banco de dados
+                    conn.Open();
+                    //Executando instrução sql
+                    cmd.ExecuteNonQuery();
+                    //Fechando conexão com o banco de dados
+                    conn.Close();
+                }
+            }
+        }
+
+        public void Excluir(int idEstabelecimento)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
+            {
+                //Criando instrução sql para inserir na tabela de cidades
+                string strSQL = @"DELETE from estabelecimento WHERE id_estabelecimento = @id_estabelecimento;";
+
+                //Criando um comando sql que será executado na base de dados
+                using (SqlCommand cmd = new SqlCommand(strSQL))
+                {
+                    cmd.Connection = conn;
+                    //Preenchendo os parâmetros da instrução sql
+                    cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = idEstabelecimento;
 
 
                     //Abrindo conexão com o banco de dados
@@ -330,31 +370,6 @@ namespace TableFinder.DataAccess
             }
 
             return lst;
-        }
-
-        public void Excluir(int idEstabelecimento)
-        {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
-            {
-                //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"DELETE from estabelecimento WHERE id_estabelecimento = @id_estabelecimento;";
-
-                //Criando um comando sql que será executado na base de dados
-                using (SqlCommand cmd = new SqlCommand(strSQL))
-                {
-                    cmd.Connection = conn;
-                    //Preenchendo os parâmetros da instrução sql
-                    cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = idEstabelecimento;
-
-
-                    //Abrindo conexão com o banco de dados
-                    conn.Open();
-                    //Executando instrução sql
-                    cmd.ExecuteNonQuery();
-                    //Fechando conexão com o banco de dados
-                    conn.Close();
-                }
-            }
         }
     }
 }

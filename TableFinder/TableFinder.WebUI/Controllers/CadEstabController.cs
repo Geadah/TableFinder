@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TableFinder.DataAccess;
@@ -14,6 +13,8 @@ namespace TableFinder.WebUI.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Tipos = new TipoComidaDAO().BuscarTodos();
+            ViewBag.Cardapio = new List<Cardapio>();
             return View();
         }
 
@@ -23,8 +24,6 @@ namespace TableFinder.WebUI.Controllers
             var lst = new EstabelecimentoDAO().BuscarPorDono(usuario.Id);
             return View(lst);
         }
-
-
 
         public ActionResult Salvar(Estabelecimento obj)
         {
@@ -36,6 +35,13 @@ namespace TableFinder.WebUI.Controllers
                 new EstabelecimentoDAO().Inserir(obj);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult SalvarCardapio(Cardapio obj)
+        {
+            new CardapioDAO().Inserir(obj);
+
+            return RedirectToAction("Editar", "CadEstab", new { id = obj.Estabelecimento.Id });
         }
 
         [HttpPost]
@@ -65,17 +71,16 @@ namespace TableFinder.WebUI.Controllers
         public ActionResult Editar(int id)
         {
             var obj = new EstabelecimentoDAO().BuscarPorId(id);
+            ViewBag.Cardapio = new CardapioDAO().BuscarPorEstab(id);
+            ViewBag.Tipos = new TipoComidaDAO().BuscarTodos();
             return View("Index", obj);
-
-
         }
 
         public ActionResult Excluir(int id)
         {
             new EstabelecimentoDAO().Excluir(id);
+
             return RedirectToAction("EstabList", "CadEstab");
         }
-
-
     }
 }

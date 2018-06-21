@@ -2,56 +2,149 @@
 @model Estabelecimento
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <form action="@Url.Action("Salvar", "CadEstab")" class="form-horizontal">
-            @Html.HiddenFor(m => m.Id)
-            <div class="form-group">
-                <div class="col-md-12 text-center">
-                    <h3>Cadastro de Estabelecimento</h3>
-                    <hr />
+        <div>
+            <!-- NAV TABS -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Dados Gerais</a>
+                </li>
+                <li role="presentation">
+                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Cardápio</a>
+                </li>
+            </ul>
+            <!-- TAB PANES -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <form action="@Url.Action("Salvar", "CadEstab")" class="form-horizontal">
+                        @Html.HiddenFor(m => m.Id)
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <h3>Cadastro de Estabelecimento</h3>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Nome, "Nome Estabelecimento:", new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.CNPJ, "CNPJ:", new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.CNPJ, new { @id = "txtCNPJ", @class = "form-control" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.Localizacao, "Localização:", new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Localizacao, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Imagem, "Imagem:", new { @id = "lblImagem", @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.Imagem, new { @id = "txtImagem", @class = "form-control", @maxlength = 1000, @readonly = true })
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-default fileinput-button">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            <input id="fupArquivo" type="file" name="files[]" multiple="multiple" data-url="@Url.Action("Upload", "CadEstab")" />
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Descricao, "Descrição:", new { @class = "control-label" })
+                                @Html.TextAreaFor(m => m.Descricao, new { @class = "form-control", @rows = 10 })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <form action="@Url.Action("SalvarCardapio", "CadEstab")" class="form-horizontal">
+                        <input type="hidden" name="Estabelecimento.Id" value="@(Model != null ? Model.Id : 0)" />
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <h3>Cadastro de Cardápio</h3>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Produto:</label>
+                                <input class="form-control" type="text" name="Produto" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <label class="control-label">Tipo:</label>
+                                <select class="form-control" name="Tipo.TipoId">
+                                    <option value="">-- [SELECIONE] --</option>
+                                    @foreach (var tipo in (List<TipoComida>)ViewBag.Tipos)
+                                    {
+                                        <option value="@tipo.TipoId">@tipo.TipoNome</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Preço:</label>
+                                <input class="form-control" type="text" name="Preco" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Descrição:</label>
+                                <textarea class="form-control" name="Descricao" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Tipo</th>
+                                            <th>Preço (R$)</th>
+                                            <th>Descrição</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in (List<Cardapio>)ViewBag.Cardapio)
+                                        {
+                                            <tr>
+                                                <td>@item.Produto</td>
+                                                <td>@item.Tipo.TipoNome</td>
+                                                <td>@string.Format("{0:C2}", item.Preco)</td>
+                                                <td>@item.Descricao</td>
+                                                <td>
+                                                    <a href="@Url.Action("ExcluirCardapio", "CadEstab", new { @id = item.Id })" onclick="if(!confirm('Deseja excluir este item do cardápio?')) return false;">
+                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.LabelFor(m => m.Nome, "Nome Estabelecimento:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.CNPJ, "CNPJ:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.CNPJ, new { @id = "txtCNPJ", @class = "form-control" })
-                </div>
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.Localizacao, "Localização:", new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Localizacao, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.LabelFor(m => m.Imagem, "Imagem:", new { @id = "lblImagem", @class = "control-label" })
-                    <div class="input-group">
-                        @Html.TextBoxFor(m => m.Imagem, new { @id = "txtImagem", @class = "form-control", @maxlength = 1000, @readonly = true })
-                        <span class="input-group-btn">
-                            <span class="btn btn-default fileinput-button">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                <input id="fupArquivo" type="file" name="files[]" multiple="multiple" data-url="@Url.Action("Upload", "CadEstab")" />
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.LabelFor(m => m.Descricao, "Descrição:", new { @class = "control-label" })
-                    @Html.TextAreaFor(m => m.Descricao, new { @class = "form-control", @rows = 10 })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-                </div>
-            </div>
-        </form>
+        </div>
+
     </div>
 </div>
 @section Scripts {

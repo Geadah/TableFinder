@@ -14,7 +14,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"INSERT INTO estabelecimento (id_estabelecimento, id_tipo, produto, descricao, preco) VALUES (@id_estabelecimento, @id_tipo, @produto, @descricao, @preco);";
+                string strSQL = @"INSERT INTO cardapio (id_estabelecimento, id_tipo, produto, descricao, preco) VALUES (@id_estabelecimento, @id_tipo, @produto, @descricao, @preco);";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -50,7 +50,7 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"UPDATE estabelecimento SET id_estabelecimento = @id_estabelecimento, id_tipo = @id_tipo, produto = @produto, descricao = @descricao, preco = @preco WHERE id = @id;";
+                string strSQL = @"UPDATE cardapio SET id_estabelecimento = @id_estabelecimento, id_tipo = @id_tipo, produto = @produto, descricao = @descricao, preco = @preco WHERE id = @id;";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -87,14 +87,14 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"DELETE FROM estabelecimento WHERE id = @id;";
+                string strSQL = @"DELETE FROM cardapio WHERE id_cardapio = @id_cardapio;";
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
                     cmd.Connection = conn;
                     //Preenchendo os parâmetros da instrução sql
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = obj.Id;
+                    cmd.Parameters.Add("@id_cardapio", SqlDbType.Int).Value = obj.Id;
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();

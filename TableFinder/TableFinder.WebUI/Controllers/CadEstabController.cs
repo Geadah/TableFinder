@@ -82,5 +82,12 @@ namespace TableFinder.WebUI.Controllers
 
             return RedirectToAction("EstabList", "CadEstab");
         }
+
+        public ActionResult ExcluirCardapio(int id)
+        {
+            new CardapioDAO().Excluir(id);
+
+            return RedirectToAction("Editar", "CadEstab", new { id = id });
+        }
     }
 }

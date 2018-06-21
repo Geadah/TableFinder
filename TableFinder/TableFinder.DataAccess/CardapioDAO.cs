@@ -82,7 +82,7 @@ namespace TableFinder.DataAccess
             }
         }
 
-        public void Excluir(Cardapio obj)
+        public void Excluir(int id)
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
@@ -94,7 +94,7 @@ namespace TableFinder.DataAccess
                 {
                     cmd.Connection = conn;
                     //Preenchendo os parâmetros da instrução sql
-                    cmd.Parameters.Add("@id_cardapio", SqlDbType.Int).Value = obj.Id;
+                    cmd.Parameters.Add("@id_cardapio", SqlDbType.Int).Value = id;
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();

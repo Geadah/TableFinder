@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TableFinder.DataAccess;
+using TableFinder.Models;
 
 namespace TableFinder.WebUI.Controllers
 {
@@ -15,4 +16,6 @@ namespace TableFinder.WebUI.Controllers
             return View(lst);
         }
     }
+
+   
 }

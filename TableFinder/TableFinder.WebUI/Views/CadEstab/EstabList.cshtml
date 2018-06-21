@@ -24,7 +24,9 @@
                         <td>@item.Descricao</td>
                         <td>
                             <a href="@Url.Action("Editar","CadEstab", new { @Id=item.Id})">Editar</a>
-                            <a href="@Url.Action("Excluir","CadEstab", new { @Id=item.Id})">Excluir</a>
+                            <a href="@Url.Action("Excluir", "CadEstab", new { @id = item.Id })" onclick="if(!confirm('Deseja excluir POR COMPLETO este estabelecimento?')) return false;">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
                         </td>
                     </tr>
                 }

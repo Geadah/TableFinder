@@ -96,7 +96,9 @@ namespace TableFinder.DataAccess
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Db"].ConnectionString))
             {
                 //Criando instrução sql para inserir na tabela de cidades
-                string strSQL = @"DELETE from estabelecimento WHERE id_estabelecimento = @id_estabelecimento;";
+                string strSQL = @"DELETE from cardapio WHERE id_estabelecimento = @id_estabelecimento; 
+                                  DELETE from estabelecimento WHERE id_estabelecimento = @id_estabelecimento";
+                
 
                 //Criando um comando sql que será executado na base de dados
                 using (SqlCommand cmd = new SqlCommand(strSQL))
@@ -104,7 +106,6 @@ namespace TableFinder.DataAccess
                     cmd.Connection = conn;
                     //Preenchendo os parâmetros da instrução sql
                     cmd.Parameters.Add("@id_estabelecimento", SqlDbType.Int).Value = idEstabelecimento;
-
 
                     //Abrindo conexão com o banco de dados
                     conn.Open();

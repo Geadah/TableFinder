@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+}
+
+.demo-container {
+    height: 700px;
+}
+
+    .demo-container .code-container .url,
+    .demo-container .code-container .request {
+        height: 30%;
+    }
+
+    .demo-container .code-container .response {
+        height: 70%;
+    }
+
+.vertical-stack {
+    display: flex;
+    flex-direction: row;
+}
+
+#map {
+    height: 700px !important;
+    position: relative;
+    width: 100%;
+}
+
+.demo-code-container {
+    height: 700px;
+}
+
+    .demo-code-container .prettyprint {
+        height: 100%;
+    }
+
+.maps-frame {
+    height: 700px !important;
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .vertical-stack {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .vertical-stack .maps-frame {
+            height: 350px !important;
+            width: 100%;
+        }
+
+        .vertical-stack .demo-code-container {
+            height: 350px !important;
+        }
+}
+
+.kd-tabbed-vert {
+    margin: 0;
+}
+
+    .kd-tabbed-vert.header-links .kd-tabbutton a {
+        color: #757575;
+        display: inline-block;
+        height: 100%;
+        padding: 0 24px;
+        width: 100%;
+    }
+
+    .kd-tabbed-vert.header-links .kd-tabbutton {
+        padding: 0;
+    }
+
+        .kd-tabbed-vert.header-links .kd-tabbutton.selected a {
+            color: #03a9f4;
+        }
+
+        .kd-tabbed-vert.header-links .kd-tabbutton a:focus {
+            text-decoration: none;
+        }
+
+p.top-desc {
+    padding: 1em 1em .1em 1em;
+}
+
+p.bottom-desc {
+    padding: 0em 1em 1em 1em;
+}
+
+.hidden .kd-buttonbar {
+    display: none;
+}

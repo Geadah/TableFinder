@@ -155,7 +155,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NavegacaoController.cs" />
-    <Compile Include="Controllers\TComidaController.cs" />
     <Compile Include="CustomPrincipalSerializeModel.cs" />
     <Compile Include="FormsAuthenticationUtil.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +165,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\demos.css" />
     <Content Include="Content\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui.css" />
     <Content Include="Content\jquery.fileupload.css" />

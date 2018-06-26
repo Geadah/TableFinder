@@ -33,11 +33,11 @@ create table estabelecimento
 insert into estabelecimento
 values
 (
-	'Hamburgão do Gilberto',
+	'Churrascaria Espetão',
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 	'hamburguer.jpg',
 	'71.845.217/0001-40',
-	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
+	'Rodovia BR-116, Km 10, 22730 - Loja-4 - Tatuquara, Curitiba - PR, 81690-500',
 	'1',
 	'2'
 );
@@ -45,11 +45,11 @@ values
 insert into estabelecimento
 values
 (
-	'Iguarias do Edemar',
+	'Marcelu´s lanches',
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 	'costela-de-chao-de-forno-do-jimmy-31937.jpg',
 	'21.187.149/0001-00',
-	'Rua Padre Leonardo Nunes, 180 - Portão, Curitiba - PR, 80330-320',
+	'Av. Presidente Arthur da Silva Bernardes, 1069 - Portão, Curitiba - PR, 80320-300',
 	'1',
 	'2'
 );
@@ -90,6 +90,6 @@ create table cardapio
 )
 
 insert into cardapio
-values (1, 1, 'Carne de Cavalo','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',132.00);
+values (1, 1, 'Carne de Boi','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',50.00);
 insert into cardapio 
-values (2, 2, 'Carne de Elefante','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',248.00);
+values (2, 2, 'Hamburguer caseiro','Feito especialmente para pessoas com gostos refinados macio e delicioso, diferentciado.',30.00);

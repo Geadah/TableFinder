@@ -28,33 +28,36 @@
         </form>
     </div>
     <div class="col-md-10">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-4 text-center">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <img src="@Url.Content(string.Format("~/Images/{0}", item.Imagem))" style="width: 100%; max-height: 200px;" />
+        @{
+            var rowIndex = 0;
+        }
+        @while (Model.Skip(rowIndex * 3).Count() > 0)
+        {
+            <div class="row">
+                @foreach (var item in Model.Skip(rowIndex * 3).Take(3).ToList())
+                {
+                    <div class="col-md-4 text-center">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <img src="@Url.Content(string.Format("~/Images/{0}", item.Imagem))" style="width: 100%; max-height: 200px;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index", "Navegacao", new { @id = item.Id })">
+                                    <h3>@item.Nome</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @(item.Descricao.Length > 100 ? item.Descricao.Substring(0, 100) + "..." : item.Descricao)
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="@Url.Action("Index", "Navegacao", new { @id = item.Id })">
-                                <h3>@item.Nome</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            @(item.Descricao.Length > 100 ? item.Descricao.Substring(0, 100) + "..." : item.Descricao)
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-
+                }
+            </div>
+            rowIndex++;
+        }
     </div>
 </div>
-
-
-
